@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFE Material Calculator", "CFE Material Calculator\CFE Material Calculator.csproj", "{656E68A1-A385-41FB-A2B3-958A1F771BD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CFE Material Calculator", "CFE Material Calculator\CFE Material Calculator.csproj", "{656E68A1-A385-41FB-A2B3-958A1F771BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{06DC097A-7DA8-45BA-9788-944F16A6AE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{06DC097A-7DA8-45BA-9788-944F16A6AE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{D55946BF-B5C9-42D7-A8F0-031A69C2728B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{D55946BF-B5C9-42D7-A8F0-031A69C2728B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacion", "Aplicacion", "{90B4AB91-8533-4818-BE61-AE8BE8BBAC71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidades", "Entidades", "{7A736389-5FA8-4E03-BDC0-75A858F9C2BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{564E14D0-8608-405A-BD62-1703888A8A4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{8EF2F3FC-724F-4B79-AE67-379DF12FB607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +44,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{656E68A1-A385-41FB-A2B3-958A1F771BD3} = {90B4AB91-8533-4818-BE61-AE8BE8BBAC71}
+		{06DC097A-7DA8-45BA-9788-944F16A6AE8D} = {7A736389-5FA8-4E03-BDC0-75A858F9C2BC}
+		{D55946BF-B5C9-42D7-A8F0-031A69C2728B} = {564E14D0-8608-405A-BD62-1703888A8A4D}
+		{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2} = {8EF2F3FC-724F-4B79-AE67-379DF12FB607}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65B54CB0-306E-4F6A-8F96-F221731542E6}
