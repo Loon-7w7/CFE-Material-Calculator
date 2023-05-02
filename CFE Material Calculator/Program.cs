@@ -1,6 +1,7 @@
 using CFE_Material_Calculator.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Writers;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,11 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+using (var Scope = app.Services.CreateScope())
+{
+    var aplicarionContext = Scope.ServiceProvider.GetRequiredService<DataBaseContext>();
+    aplicarionContext.Database.Migrate();
 }
 //Swagger
 app.UseSwagger();
