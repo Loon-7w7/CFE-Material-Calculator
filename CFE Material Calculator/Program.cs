@@ -1,14 +1,21 @@
 using CFE_Material_Calculator.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-
+using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var provider = builder.Services.BuildServiceProvider();
+var configuracion = provider.GetRequiredService<IConfiguration>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMvc();
+// Context
+builder.Services.AddDbContext<DataBaseContext>
+    (
+        option => option.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")))
+    );
 // Swagger
 builder.Services.AddSwaggerGen(c =>
 {
@@ -24,7 +31,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 //Swagger
 app.UseSwagger();
 app.UseSwaggerUI(c =>

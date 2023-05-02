@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Entidad de dispositavo
+    /// </summary>
     public class Device
     {
         /// <summary>
