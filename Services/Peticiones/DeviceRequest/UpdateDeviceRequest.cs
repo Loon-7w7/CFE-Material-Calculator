@@ -10,11 +10,7 @@ namespace Services.Peticiones.DeviceRequest
     /// <summary>
     /// Peticion para actualizar dispositivos
     /// </summary>
-    public class UpdateDeviceRequest
+    public class UpdateDeviceRequest : Device
     {
-        /// <summary>
-        /// Nuevoas datos de los dispositivos
-        /// </summary>
-        public Device NewDevice { get; set; }
     }
 }

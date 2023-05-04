@@ -53,7 +53,7 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task DeleteDevice(DeleteDeviceRequest request)
         {
-            Device device = new Device();
+            Device? device = new Device();
             if (request.DeviceId != Guid.Empty) 
             {
                 device = await _context.devices.FirstOrDefaultAsync(x => x.Id == request.DeviceId);
@@ -74,7 +74,7 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task<GetDeviceByIdResponse> GetDeviceById(GetDeviceByIdRequest request)
         {
-            Device device = new Device();
+            Device? device = new Device();
             GetDeviceByIdResponse response = new GetDeviceByIdResponse();
             if (request.Id != Guid.Empty)
             {
@@ -103,16 +103,21 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task UpdateDevice(UpdateDeviceRequest request)
         {
-            if (request.NewDevice != null) 
+            if (request!= null) 
             {
-                Device device = await _context.devices.FindAsync(request.NewDevice.Id);
+                Device? device = await _context.devices.FindAsync(request.Id);
                 if(device != null) 
                 {
-                    device = request.NewDevice;
+                    device = request;
                     _context.devices.Update(device);
                     await _context.SaveChangesAsync();
                 }
-                
+                else 
+                {
+                    device = _mapper.Map<UpdateDeviceRequest>(request);
+                    await _context.devices.AddAsync(device);
+                    await _context.SaveChangesAsync();
+                }
             }
             
         }
