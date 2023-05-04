@@ -15,7 +15,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMvc();
 ///AutoMapper
-builder.Services.AddAutoMapper(typeof(DeviceMapper));
+builder.Services.AddAutoMapper(typeof(DeviceMapper), typeof(MaterialMapper));
 // Context
 builder.Services.AddDbContext<DataBaseContext>
     (
