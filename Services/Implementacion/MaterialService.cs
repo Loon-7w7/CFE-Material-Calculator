@@ -45,7 +45,7 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task DeleteMaterial(DeleteMaterialRequest request)
         {
-            Material material;
+            Material? material;
             material = await _context.materials.FindAsync(request.Id);
             if (material != null) 
             {
@@ -61,7 +61,7 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task<GetMaterialByIdResponse> GetMaterialById(GetMaterialByIdRequest request)
         {
-            Material material;
+            Material? material;
             GetMaterialByIdResponse response = new GetMaterialByIdResponse();
             material = await _context.materials.FirstOrDefaultAsync(x => x.Id == request.Id);
             if(material != null) 
@@ -87,7 +87,7 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task UpdateMaterial(UpdateMaterialRequest request)
         {
-            Material material = await _context.materials.FindAsync(request.Id);
+            Material? material = await _context.materials.FindAsync(request.Id);
             if( material != null ) 
             {
                 _context.materials.Update(material);
