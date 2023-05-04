@@ -6,7 +6,6 @@ namespace Persistence
 {
     public class DataBaseContext : DbContext
     {
-        private readonly string _connectionString;
 
         public DbSet<Device> devices { get; set; }
         public DbSet<Material> materials { get; set; }
@@ -14,13 +13,16 @@ namespace Persistence
 
         public DataBaseContext (DbContextOptions<DataBaseContext> options ): base (options)
         {
-            
+        }
+        public DataBaseContext( )
+        {
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("", ServerVersion.AutoDetect(_connectionString));
+                optionsBuilder.UseMySql("", ServerVersion.AutoDetect(""));
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
