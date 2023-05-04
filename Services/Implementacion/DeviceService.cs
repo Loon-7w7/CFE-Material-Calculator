@@ -1,4 +1,6 @@
-﻿using Persistence;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 using Services.Peticiones.DeviceRequest;
 using Services.Repositorios;
 using Services.Respuestas.DeviceResponse;
@@ -25,27 +27,52 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Datos del nuevo dispositivo</param>
         /// <returns></returns>
-        public Task CreateDevice(CreateDeviceRequest request)
+        public async Task CreateDevice(CreateDeviceRequest request)
         {
-            throw new NotImplementedException();
+            if (request.NewDevice != null)
+            {
+                await context.devices.AddAsync(request.NewDevice);
+                await context.SaveChangesAsync();
+            }
+
         }
         /// <summary>
         /// Metodo para eliminacion de Dispositivos
         /// </summary>
         /// <param name="request">Id del despositivo</param>
         /// <returns></returns>
-        public Task DeleteDevice(DeleteDeviceRequest request)
+        public async Task DeleteDevice(DeleteDeviceRequest request)
         {
-            throw new NotImplementedException();
+            Device device = new Device();
+            if (request.DeviceId != Guid.Empty) 
+            {
+                device = await context.devices.FirstOrDefaultAsync(x => x.Id == request.DeviceId);
+
+                if (device != null)
+                {
+                    context.devices.Remove(device);
+                    await context.SaveChangesAsync();
+                }
+            }
+            
+            
         }
         /// <summary>
         /// Metodo para obtener los dispositivos por su id
         /// </summary>
         /// <param name="request">Id del diospositivo</param>
         /// <returns></returns>
-        public Task<GetDeviceByIdResponse> GetDeviceById(GetDeviceByIdRequest request)
+        public async Task<GetDeviceByIdResponse> GetDeviceById(GetDeviceByIdRequest request)
         {
-            throw new NotImplementedException();
+            Device device = new Device();
+            GetDeviceByIdResponse response = new GetDeviceByIdResponse();
+            if (request.Id != Guid.Empty)
+            {
+                device = await context.devices.FirstOrDefaultAsync(x => x.Id == request.Id);
+
+                return response;
+            }
+            return response;
         }
         /// <summary>
         /// Metodo para obtener todos los dispositivos
