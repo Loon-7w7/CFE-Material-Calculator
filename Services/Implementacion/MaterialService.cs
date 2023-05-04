@@ -41,19 +41,23 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Datos del nuevo Material</param>
         /// <returns></returns>
-        public async Task CreateMaterial(CreateMaterialRequest request)
+        public async Task<bool> CreateMaterial(CreateMaterialRequest request)
         {
+            try { 
             Material material = _mapper.Map<Material>(request);
             _context.materials.Add(material);
             await _context.SaveChangesAsync();
+                return true;
+            } catch { return false; }
         }
         /// <summary>
         /// Metodo para eliminacion de Materiales
         /// </summary>
         /// <param name="request">Id del Material</param>
         /// <returns></returns>
-        public async Task DeleteMaterial(DeleteMaterialRequest request)
+        public async Task<bool> DeleteMaterial(DeleteMaterialRequest request)
         {
+            try { 
             Material? material;
             material = await _context.materials.FindAsync(request.Id);
             if (material != null) 
@@ -61,6 +65,8 @@ namespace Services.Implementacion
                 _context.materials.Remove(material);
                 await _context.SaveChangesAsync();
             }
+                return true;
+            } catch { return false; }
 
         }
         /// <summary>
@@ -94,8 +100,9 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Nuevos datos de los Materiales</param>
         /// <returns></returns>
-        public async Task UpdateMaterial(UpdateMaterialRequest request)
+        public async Task<bool> UpdateMaterial(UpdateMaterialRequest request)
         {
+            try { 
             Material? material = await _context.materials.FindAsync(request.Id);
             if( material != null ) 
             {
@@ -110,6 +117,8 @@ namespace Services.Implementacion
 
             }
             await _context.SaveChangesAsync();
+                return true;
+            } catch { return false; }
         }
     }
 }

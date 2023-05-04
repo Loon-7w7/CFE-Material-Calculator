@@ -29,18 +29,18 @@ namespace Services.Repositorios
         /// </summary>
         /// <param name="request">Datos del nueva Consulta</param>
         /// <returns></returns>
-        Task CreateConsultation(CreateConsultationRequest request);
+        Task<bool> CreateConsultation(CreateConsultationRequest request);
         /// <summary>
         /// Metodo para eliminacion de Consultas
         /// </summary>
         /// <param name="request">Id del Consulta</param>
         /// <returns></returns>
-        Task DeleteConsultation(DeleteConsultationRequest request);
+        Task<bool> DeleteConsultation(DeleteConsultationRequest request);
         /// <summary>
         /// actualizacion de Consultas
         /// </summary>
         /// <param name="request">Nuevos datos de las Consultas</param>
         /// <returns></returns>
-        Task UpdateConsultation(UpdateConsultationRequest request);
+        Task<bool> UpdateConsultation(UpdateConsultationRequest request);
     }
 }

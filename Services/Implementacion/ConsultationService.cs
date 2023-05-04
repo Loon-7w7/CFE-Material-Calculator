@@ -41,29 +41,44 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Datos del nueva Consulta</param>
         /// <returns></returns>
-        public async Task CreateConsultation(CreateConsultationRequest request)
+        public async Task<bool> CreateConsultation(CreateConsultationRequest request)
         {
             Consultation consultation = new Consultation();
             if(request != null) 
             {
-                consultation = _mapper.Map<Consultation>(request);
-                await _context.consultations.AddAsync(consultation);
-                await _context.SaveChangesAsync();
+                try 
+                {
+                    consultation = _mapper.Map<Consultation>(request);
+                    await _context.consultations.AddAsync(consultation);
+                    await _context.SaveChangesAsync();
+                    return true;
+                } 
+                catch
+                {
+                    return false;
+                }
+                
             }
+            else { return false; }
         }
         /// <summary>
         /// Metodo para eliminacion de Consultas
         /// </summary>
         /// <param name="request">Id del Consulta</param>
         /// <returns></returns>
-        public async Task DeleteConsultation(DeleteConsultationRequest request)
+        public async Task<bool> DeleteConsultation(DeleteConsultationRequest request)
         {
+            try { 
             Consultation? consultation = await _context.consultations.FindAsync(request.Id);
             if(consultation != null) 
             {
                 _context.consultations.Remove(consultation);
                 await _context.SaveChangesAsync();
+                    return true;
             }
+                return false;
+            }
+            catch { return false; }
         }
         /// <summary>
         /// Metodo para obtener los Consultas por su id
@@ -100,8 +115,9 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Nuevos datos de las Consultas</param>
         /// <returns></returns>
-        public async Task UpdateConsultation(UpdateConsultationRequest request)
+        public async Task<bool> UpdateConsultation(UpdateConsultationRequest request)
         {
+            try { 
             Consultation? consultation;
             GetConsultationByIdResponse response;
             if (request != null)
@@ -118,8 +134,11 @@ namespace Services.Implementacion
                     _context.consultations.Update(consultation);
                 }
                 await _context.SaveChangesAsync();
+                    return true;
             }
-            
+            else { return false; }
+            }
+            catch { return false; }
         }
     }
 }

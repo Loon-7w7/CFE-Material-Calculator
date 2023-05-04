@@ -30,18 +30,18 @@ namespace Services.Repositorios
         /// </summary>
         /// <param name="request">Datos del nuevo dispositivo</param>
         /// <returns></returns>
-        Task CreateDevice(CreateDeviceRequest request);
+        Task<bool> CreateDevice(CreateDeviceRequest request);
         /// <summary>
         /// Metodo para eliminacion de Dispositivos
         /// </summary>
         /// <param name="request">Id del despositivo</param>
         /// <returns></returns>
-        Task DeleteDevice (DeleteDeviceRequest request);
+        Task<bool> DeleteDevice (DeleteDeviceRequest request);
         /// <summary>
         /// actualizacion de dispositivos
         /// </summary>
         /// <param name="request">Nuevos datos de los dispositivos</param>
         /// <returns></returns>
-        Task UpdateDevice(UpdateDeviceRequest request);
+        Task<bool> UpdateDevice(UpdateDeviceRequest request);
     }
 }

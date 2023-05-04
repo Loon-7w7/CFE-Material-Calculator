@@ -41,23 +41,27 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Datos del nuevo dispositivo</param>
         /// <returns></returns>
-        public async Task CreateDevice(CreateDeviceRequest request)
+        public async Task<bool> CreateDevice(CreateDeviceRequest request)
         {
-            if (request != null)
-            {
-                Device device = _mapper.Map<Device>(request);
-                await _context.devices.AddAsync(request);
-                await _context.SaveChangesAsync();
-            }
-
+            try { 
+                if (request != null)
+                {
+                    Device device = _mapper.Map<Device>(request);
+                    await _context.devices.AddAsync(request);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                else { return false; }
+            } catch { return false; }
         }
         /// <summary>
         /// Metodo para eliminacion de Dispositivos
         /// </summary>
         /// <param name="request">Id del despositivo</param>
         /// <returns></returns>
-        public async Task DeleteDevice(DeleteDeviceRequest request)
+        public async Task<bool> DeleteDevice(DeleteDeviceRequest request)
         {
+            try { 
             Device? device = new Device();
             if (request.DeviceId != Guid.Empty) 
             {
@@ -66,11 +70,13 @@ namespace Services.Implementacion
                 if (device != null)
                 {
                     _context.devices.Remove(device);
-                    await _context.SaveChangesAsync();
                 }
+                    await _context.SaveChangesAsync();
+                    return true;
             }
-            
-            
+                else { return false; }
+            }
+            catch { return false; }
         }
         /// <summary>
         /// Metodo para obtener los dispositivos por su id
@@ -106,8 +112,9 @@ namespace Services.Implementacion
         /// </summary>
         /// <param name="request">Nuevos datos de los dispositivos</param>
         /// <returns></returns>
-        public async Task UpdateDevice(UpdateDeviceRequest request)
+        public async Task<bool> UpdateDevice(UpdateDeviceRequest request)
         {
+            try { 
             if (request!= null) 
             {
                 Device? device = await _context.devices.FindAsync(request.Id);
@@ -122,8 +129,11 @@ namespace Services.Implementacion
                     await _context.devices.AddAsync(device);
                 }
                 await _context.SaveChangesAsync();
+                    return true;
             }
-            
+                else { return false; }
+            }
+            catch { return false; }
         }
     }
 }

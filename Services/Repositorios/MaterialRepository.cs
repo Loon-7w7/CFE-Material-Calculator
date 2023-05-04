@@ -29,18 +29,18 @@ namespace Services.Repositorios
         /// </summary>
         /// <param name="request">Datos del nuevo Material</param>
         /// <returns></returns>
-        Task CreateMaterial(CreateMaterialRequest request);
+        Task<bool> CreateMaterial(CreateMaterialRequest request);
         /// <summary>
         /// Metodo para eliminacion de Materiales
         /// </summary>
         /// <param name="request">Id del Material</param>
         /// <returns></returns>
-        Task DeleteMaterial(DeleteMaterialRequest request);
+        Task<bool> DeleteMaterial(DeleteMaterialRequest request);
         /// <summary>
         /// actualizacion de Materiales
         /// </summary>
         /// <param name="request">Nuevos datos de los Materiales</param>
         /// <returns></returns>
-        Task UpdateMaterial(UpdateMaterialRequest request);
+        Task<bool> UpdateMaterial(UpdateMaterialRequest request);
     }
 }
