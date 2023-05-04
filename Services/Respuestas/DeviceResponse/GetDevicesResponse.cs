@@ -15,6 +15,6 @@ namespace Services.Respuestas.DeviceResponse
         /// <summary>
         /// Lista de dispositivos
         /// </summary>
-        List<Device> devices { get; set; }
+        public List<Device> devices { get; set; }
     }
 }

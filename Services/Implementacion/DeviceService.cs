@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using AutoMapper;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Services.Peticiones.DeviceRequest;
@@ -20,7 +21,16 @@ namespace Services.Implementacion
         /// <summary>
         /// Contexto de la base de datos
         /// </summary>
-        public readonly DataBaseContext context = new DataBaseContext();
+        public readonly DataBaseContext _context;
+        /// <summary>
+        /// AutoMapper
+        /// </summary>
+        private readonly IMapper _mapper;
+        public DeviceService(IMapper mapper, DataBaseContext context)
+        {
+            _mapper = mapper;
+            _context = context;
+        }
 
         /// <summary>
         /// Metodo para crear dispositivos
@@ -31,8 +41,8 @@ namespace Services.Implementacion
         {
             if (request.NewDevice != null)
             {
-                await context.devices.AddAsync(request.NewDevice);
-                await context.SaveChangesAsync();
+                await _context.devices.AddAsync(request.NewDevice);
+                await _context.SaveChangesAsync();
             }
 
         }
@@ -46,12 +56,12 @@ namespace Services.Implementacion
             Device device = new Device();
             if (request.DeviceId != Guid.Empty) 
             {
-                device = await context.devices.FirstOrDefaultAsync(x => x.Id == request.DeviceId);
+                device = await _context.devices.FirstOrDefaultAsync(x => x.Id == request.DeviceId);
 
                 if (device != null)
                 {
-                    context.devices.Remove(device);
-                    await context.SaveChangesAsync();
+                    _context.devices.Remove(device);
+                    await _context.SaveChangesAsync();
                 }
             }
             
@@ -68,9 +78,11 @@ namespace Services.Implementacion
             GetDeviceByIdResponse response = new GetDeviceByIdResponse();
             if (request.Id != Guid.Empty)
             {
-                device = await context.devices.FirstOrDefaultAsync(x => x.Id == request.Id);
-
-                return response;
+                device = await _context.devices.FirstOrDefaultAsync(x => x.Id == request.Id);
+                if (device != new Device()) 
+                {
+                    response = _mapper.Map<GetDeviceByIdResponse>(device);
+                }
             }
             return response;
         }
@@ -78,18 +90,31 @@ namespace Services.Implementacion
         /// Metodo para obtener todos los dispositivos
         /// </summary>
         /// <returns></returns>
-        public Task<GetDevicesResponse> GetDivices()
+        public async Task<GetDevicesResponse> GetDivices()
         {
-            throw new NotImplementedException();
+            GetDevicesResponse response = new GetDevicesResponse();
+            response.devices = await _context.devices.ToListAsync();
+            return response;
         }
         /// <summary>
         /// actualizacion de dispositivos
         /// </summary>
         /// <param name="request">Nuevos datos de los dispositivos</param>
         /// <returns></returns>
-        public Task UpdateDevice(UpdateDeviceRequest request)
+        public async Task UpdateDevice(UpdateDeviceRequest request)
         {
-            throw new NotImplementedException();
+            if (request.NewDevice != null) 
+            {
+                Device device = await _context.devices.FindAsync(request.NewDevice.Id);
+                if(device != null) 
+                {
+                    device = request.NewDevice;
+                    _context.devices.Update(device);
+                    await _context.SaveChangesAsync();
+                }
+                
+            }
+            
         }
     }
 }

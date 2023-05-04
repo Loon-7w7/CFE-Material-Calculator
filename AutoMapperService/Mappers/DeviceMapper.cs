@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities;
+using Services.Peticiones.DeviceRequest;
 using Services.Respuestas.DeviceResponse;
 using System;
 using System.Collections.Generic;
