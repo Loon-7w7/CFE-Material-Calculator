@@ -1,5 +1,7 @@
+using AutoMapperService.Mappers;
 using CFE_Material_Calculator.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.Writers;
 using Persistence;
@@ -12,6 +14,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMvc();
+///AutoMapper
+builder.Services.AddAutoMapper(typeof(DeviceMapper));
 // Context
 builder.Services.AddDbContext<DataBaseContext>
     (

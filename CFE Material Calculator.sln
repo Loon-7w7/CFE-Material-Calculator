@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{56
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{8EF2F3FC-724F-4B79-AE67-379DF12FB607}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperService", "AutoMapperService\AutoMapperService.csproj", "{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{06DC097A-7DA8-45BA-9788-944F16A6AE8D} = {7A736389-5FA8-4E03-BDC0-75A858F9C2BC}
 		{D55946BF-B5C9-42D7-A8F0-031A69C2728B} = {564E14D0-8608-405A-BD62-1703888A8A4D}
 		{1AF86FA0-A5F3-44EB-AD85-9E6654B506B2} = {8EF2F3FC-724F-4B79-AE67-379DF12FB607}
+		{A0BBC6BB-C8BB-493D-9C04-F260EF7B5E26} = {8EF2F3FC-724F-4B79-AE67-379DF12FB607}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65B54CB0-306E-4F6A-8F96-F221731542E6}
