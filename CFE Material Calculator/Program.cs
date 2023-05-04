@@ -6,18 +6,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.Writers;
 using Persistence;
+using Services.Implementacion;
+using Services.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 //apis controlers
-builder.Services.AddMvc();
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false)
+    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 builder.Services.AddControllers
     (
         options => options.Filters.Add(typeof(GlobalExceptionHandler))
     );
+// Servicios
+builder.Services.AddScoped<DeviceRepository,DeviceService>();
+builder.Services.AddScoped<MaterialRepository, MaterialService>();
+builder.Services.AddScoped<ConsultationRepository, ConsultationService>();
 ///AutoMapper
 builder.Services.AddAutoMapper(typeof(DeviceMapper), typeof(MaterialMapper));
 // Context
@@ -52,7 +58,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
 
 });
-
+app.UseMvcWithDefaultRoute();
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();

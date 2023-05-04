@@ -27,4 +27,9 @@
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\MaterialControllers\" />
+    <Folder Include="Controllers\ConsultationControllers\" />
+  </ItemGroup>
+
 </Project>
