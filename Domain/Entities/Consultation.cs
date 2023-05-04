@@ -47,5 +47,9 @@ namespace Domain.Entities
         /// Liga de descarga del archivo
         /// </summary>
         public string UrlArchive { get; set; }
+        /// <summary>
+        /// Lista de dispositivos
+        /// </summary>
+        public List<Device> Devices { get; set; }
     }
 }

@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Services.Implementacion
 {
+    /// <summary>
+    /// servicios de materiales
+    /// </summary>
     public class MaterialService : MaterialRepository
     {
         /// <summary>
@@ -23,6 +26,11 @@ namespace Services.Implementacion
         /// Auto Mapper
         /// </summary>
         public readonly IMapper _mapper;
+        /// <summary>
+        /// contructor del servicio de materiales
+        /// </summary>
+        /// <param name="context">Contexto de la base de datos</param>
+        /// <param name="mapper">Auto Mappper</param>
         public MaterialService(DataBaseContext context, IMapper mapper) 
         {
             _context = context;
@@ -35,7 +43,8 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task CreateMaterial(CreateMaterialRequest request)
         {
-            _context.materials.Add(request);
+            Material material = _mapper.Map<Material>(request);
+            _context.materials.Add(material);
             await _context.SaveChangesAsync();
         }
         /// <summary>
@@ -90,15 +99,17 @@ namespace Services.Implementacion
             Material? material = await _context.materials.FindAsync(request.Id);
             if( material != null ) 
             {
+                material = _mapper.Map<Material>(request);
                 _context.materials.Update(material);
-                await _context.SaveChangesAsync(true);
+
             }
             else 
             {
                 Material newMaterial = _mapper.Map<Material>(request);
                 await _context.materials.AddAsync(newMaterial);
-                await _context.SaveChangesAsync();
+
             }
+            await _context.SaveChangesAsync();
         }
     }
 }

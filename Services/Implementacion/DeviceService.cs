@@ -26,12 +26,16 @@ namespace Services.Implementacion
         /// AutoMapper
         /// </summary>
         private readonly IMapper _mapper;
+        /// <summary>
+        /// contructor de dispositivos servicios
+        /// </summary>
+        /// <param name="mapper">Auto Mappper</param>
+        /// <param name="context">Contexto de la base de datos</param>
         public DeviceService(IMapper mapper, DataBaseContext context)
         {
             _mapper = mapper;
             _context = context;
         }
-
         /// <summary>
         /// Metodo para crear dispositivos
         /// </summary>
@@ -39,9 +43,10 @@ namespace Services.Implementacion
         /// <returns></returns>
         public async Task CreateDevice(CreateDeviceRequest request)
         {
-            if (request.NewDevice != null)
+            if (request != null)
             {
-                await _context.devices.AddAsync(request.NewDevice);
+                Device device = _mapper.Map<Device>(request);
+                await _context.devices.AddAsync(request);
                 await _context.SaveChangesAsync();
             }
 
@@ -108,16 +113,15 @@ namespace Services.Implementacion
                 Device? device = await _context.devices.FindAsync(request.Id);
                 if(device != null) 
                 {
-                    device = request;
+                    device = _mapper.Map<Device>(request);
                     _context.devices.Update(device);
-                    await _context.SaveChangesAsync();
                 }
                 else 
                 {
-                    device = _mapper.Map<UpdateDeviceRequest>(request);
+                    device = _mapper.Map<Device>(request);
                     await _context.devices.AddAsync(device);
-                    await _context.SaveChangesAsync();
                 }
+                await _context.SaveChangesAsync();
             }
             
         }

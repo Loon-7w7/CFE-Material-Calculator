@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Services.Repositorios
 {
+    /// <summary>
+    /// Interfaz de dispositivos
+    /// </summary>
     public interface DeviceRepository
     {
         /// <summary>

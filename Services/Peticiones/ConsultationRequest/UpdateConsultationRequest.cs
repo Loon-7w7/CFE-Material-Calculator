@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Peticiones.DeviceRequest
+namespace Services.Peticiones.ConsultationRequest
 {
     /// <summary>
-    /// Peticion para crear dispositivos
+    /// peticion para acualizar una consulta
     /// </summary>
-    public class CreateDeviceRequest : Device
+    public class UpdateConsultationRequest : Consultation
     {
+        
     }
 }

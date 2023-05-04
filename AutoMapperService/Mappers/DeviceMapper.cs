@@ -46,6 +46,22 @@ namespace AutoMapperService.Mappers
                 .ForMember(entidad => entidad.Name, opt => opt.MapFrom(Response => Response.Name))
                 .ForMember(entidad => entidad.Clasificacion, opt => opt.MapFrom(Response => Response.Clasificacion))
                 .ForMember(entidad => entidad.materials, opt => opt.MapFrom(Response => Response.materials));
+            /// <summary>
+            /// Mapea de Device a CreateDeviceRequest
+            /// </summary>
+            CreateMap<Device, CreateDeviceRequest>()
+                .ForMember(entidad => entidad.Id, opt => opt.MapFrom(Response => Response.Id))
+                .ForMember(entidad => entidad.Name, opt => opt.MapFrom(Response => Response.Name))
+                .ForMember(entidad => entidad.Clasificacion, opt => opt.MapFrom(Response => Response.Clasificacion))
+                .ForMember(entidad => entidad.materials, opt => opt.MapFrom(Response => Response.materials));
+            /// <summary>
+            /// Mapea de CreateDeviceRequest a Device
+            /// </summary>
+            CreateMap<CreateDeviceRequest, Device>()
+                .ForMember(entidad => entidad.Id, opt => opt.MapFrom(Response => Response.Id))
+                .ForMember(entidad => entidad.Name, opt => opt.MapFrom(Response => Response.Name))
+                .ForMember(entidad => entidad.Clasificacion, opt => opt.MapFrom(Response => Response.Clasificacion))
+                .ForMember(entidad => entidad.materials, opt => opt.MapFrom(Response => Response.materials));
         }
     }
 }

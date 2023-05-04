@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Peticiones.DeviceRequest
+namespace Services.Respuestas.ConsultationResponse
 {
     /// <summary>
-    /// Peticion para crear dispositivos
+    /// respuesta de la consulta por ID
     /// </summary>
-    public class CreateDeviceRequest : Device
+    public class GetConsultationByIdResponse : Consultation
     {
     }
 }

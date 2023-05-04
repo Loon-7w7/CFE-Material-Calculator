@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Services.Repositorios
 {
+    /// <summary>
+    /// Interfaz de materiales
+    /// </summary>
     public interface MaterialRepository
     {
         /// <summary>

@@ -52,6 +52,22 @@ namespace AutoMapperService.Mappers
                 .ForMember(entidad => entidad.Name, opt => opt.MapFrom(respose => respose.Name))
                 .ForMember(entidad => entidad.Unit, opt => opt.MapFrom(respose => respose.Unit))
                 .ForMember(entidad => entidad.Total, opt => opt.MapFrom(respose => respose.Total));
+            /// <summary>
+            /// mapea de material a CreateMaterialRequest
+            /// </summary>
+            CreateMap<Material, CreateMaterialRequest>()
+                .ForMember(entidad => entidad.Id, opt => opt.MapFrom(respose => respose.Id))
+                .ForMember(entidad => entidad.Name, opt => opt.MapFrom(respose => respose.Name))
+                .ForMember(entidad => entidad.Unit, opt => opt.MapFrom(respose => respose.Unit))
+                .ForMember(entidad => entidad.Total, opt => opt.MapFrom(respose => respose.Total));
+            /// <summary>
+            /// Mapea de  CreateMaterialRequest a material
+            /// </summary>
+            CreateMap<CreateMaterialRequest, Material>()
+                .ForMember(entidad => entidad.Id, opt => opt.MapFrom(respose => respose.Id))
+                .ForMember(entidad => entidad.Name, opt => opt.MapFrom(respose => respose.Name))
+                .ForMember(entidad => entidad.Unit, opt => opt.MapFrom(respose => respose.Unit))
+                .ForMember(entidad => entidad.Total, opt => opt.MapFrom(respose => respose.Total));
         }
     }
 }
