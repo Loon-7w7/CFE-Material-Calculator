@@ -1,5 +1,6 @@
 using AutoMapperService.Mappers;
 using CFE_Material_Calculator.Data;
+using CFE_Material_Calculator.Exceptios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -7,13 +8,16 @@ using Microsoft.OpenApi.Writers;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-var provider = builder.Services.BuildServiceProvider();
-var configuracion = provider.GetRequiredService<IConfiguration>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+//apis controlers
 builder.Services.AddMvc();
+builder.Services.AddControllers
+    (
+        options => options.Filters.Add(typeof(GlobalExceptionHandler))
+    );
 ///AutoMapper
 builder.Services.AddAutoMapper(typeof(DeviceMapper), typeof(MaterialMapper));
 // Context
