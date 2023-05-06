@@ -107,8 +107,9 @@ namespace Services.Implementacion
             Material? material = await _context.materials.FindAsync(request.Id);
             if( material != null ) 
             {
-                material = _mapper.Map<Material>(request);
-                _context.materials.Update(material);
+                material.Id = request.Id;
+                material.Name = request.Name;
+                material.Unit = request.Unit;
 
             }
             else 

@@ -105,7 +105,7 @@ namespace Services.Implementacion
         /// Metodo para obtener todos los Consultas
         /// </summary>
         /// <returns></returns>
-        public async Task<GetConsultationsResponse> GetDivices()
+        public async Task<GetConsultationsResponse> GetConsultations()
         {
             GetConsultationsResponse response = new GetConsultationsResponse();
             response.consultations = await _context.consultations.ToListAsync();

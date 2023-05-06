@@ -23,7 +23,7 @@ namespace Services.Repositorios
         /// Metodo para obtener todos los Consultas
         /// </summary>
         /// <returns></returns>
-        Task<GetConsultationsResponse> GetDivices();
+        Task<GetConsultationsResponse> GetConsultations();
         /// <summary>
         /// Metodo para crear Consultas
         /// </summary>

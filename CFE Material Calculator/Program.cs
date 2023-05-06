@@ -9,10 +9,12 @@ using Persistence;
 using Services.Implementacion;
 using Services.Repositorios;
 
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddHttpContextAccessor();
 //apis controlers
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
