@@ -14,7 +14,7 @@ namespace Domain.Entities
         /// <summary>
         /// Identificador de consulta
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         /// <summary>
         /// Numero de consulta
         /// </summary>

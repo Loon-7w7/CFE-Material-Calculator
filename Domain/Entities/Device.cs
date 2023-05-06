@@ -14,7 +14,7 @@ namespace Domain.Entities
         /// <summary>
         /// Identificador de dispositivos
         /// </summary>
-        public Guid Id {  get; set; }
+        public Guid? Id {  get; set; }
         /// <summary>
         /// Nombre del dispositivo
         /// </summary>
@@ -26,6 +26,6 @@ namespace Domain.Entities
         /// <summary>
         /// Lista de materiales
         /// </summary>
-        public List<Material> materials { get; set; }
+        public List<MaterialDevice> materials { get; set; }
     }
 }

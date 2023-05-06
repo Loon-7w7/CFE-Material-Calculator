@@ -10,6 +10,7 @@ namespace Persistence
         public DbSet<Device> devices { get; set; }
         public DbSet<Material> materials { get; set; }
         public DbSet<Consultation> consultations { get; set; }
+        public DbSet<MaterialDevice> materialDevices { get; set; }
 
         public DataBaseContext (DbContextOptions<DataBaseContext> options ): base (options)
         {
@@ -31,6 +32,7 @@ namespace Persistence
             modelBuilder.Entity<Device>();
             modelBuilder.Entity<Material>();
             modelBuilder.Entity<Consultation>();
+            modelBuilder.Entity<MaterialDevice>();
         }
 
 

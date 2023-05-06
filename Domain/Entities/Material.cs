@@ -14,7 +14,7 @@ namespace Domain.Entities
         /// <summary>
         /// Identificador de material
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         /// <summary>
         /// Nombre del material
         /// </summary>
@@ -23,9 +23,5 @@ namespace Domain.Entities
         /// Unidad de material
         /// </summary>
         public string Unit { get; set; }
-        /// <summary>
-        /// Total de material
-        /// </summary>
-        public float Total { get; set; }
     }
 }

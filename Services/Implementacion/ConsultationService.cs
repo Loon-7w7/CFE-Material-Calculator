@@ -48,6 +48,7 @@ namespace Services.Implementacion
             {
                 try 
                 {
+                    request.Id = Guid.NewGuid();
                     consultation = _mapper.Map<Consultation>(request);
                     await _context.consultations.AddAsync(consultation);
                     await _context.SaveChangesAsync();

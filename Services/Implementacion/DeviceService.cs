@@ -46,6 +46,7 @@ namespace Services.Implementacion
             try { 
                 if (request != null)
                 {
+                    request.Id = Guid.NewGuid();
                     Device device = _mapper.Map<Device>(request);
                     await _context.devices.AddAsync(request);
                     await _context.SaveChangesAsync();

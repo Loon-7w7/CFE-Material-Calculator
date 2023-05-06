@@ -44,9 +44,10 @@ namespace Services.Implementacion
         public async Task<bool> CreateMaterial(CreateMaterialRequest request)
         {
             try { 
-            Material material = _mapper.Map<Material>(request);
-            _context.materials.Add(material);
-            await _context.SaveChangesAsync();
+                request.Id = Guid.NewGuid();
+                Material material = _mapper.Map<Material>(request);
+                _context.materials.Add(material);
+                await _context.SaveChangesAsync();
                 return true;
             } catch { return false; }
         }
